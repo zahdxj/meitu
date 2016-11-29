@@ -1,0 +1,51 @@
+{extend name="public/base" /}
+{block name="main"}
+<div class="container" data-controller="index" data-page="index">
+	<div class="tabbar">
+		<div class="weui_tab">
+		    <div class="weui_tab_bd">
+		    	<!-- 轮播广告 -->
+	            <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {volist name="banner_list" id="vo"}
+                        <div class="swiper-slide"><a href="{$vo.img_url}"><img src="__PUBLIC__/{$vo.img_path}" /></a></div>
+                        {/volist}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                <!-- / 轮播广告 -->
+				<!-- 其他广告 -->
+				<div class="ui_ads">
+					<div class="ui_row">
+						<div class="ui_col_2">
+							<a href="{$ad_list1.ad_link}" title=""><img src="__PUBLIC__/{$ad_list1.ad_img}"></a>
+						</div>
+						<div class="ui_col_2">
+							<a href="{$ad_list2.ad_link}" title=""><img src="__PUBLIC__/{$ad_list2.ad_img}"></a>
+						</div>
+					</div>
+					<div class="ui_row">
+						<div class="ui_col_1">
+							<a href="{$ad_list3.ad_link}" title=""><img src="__PUBLIC__/{$ad_list3.ad_img}"></a>
+						</div>
+					</div>
+				</div>
+				<!--  / 其他广告 -->
+				<!-- 商品列表 -->
+				<div class="ui_list">
+					<ul>
+                        {volist name="goods_list" id="vo"}
+						<li>
+                            <a href="{:url('goods/goods_info',array('goods_id'=>$vo.goods_id))}" title=""><img src="__PUBLIC__/{$vo.goods_thumb}" alt=""></a>
+							<p>{$vo.goods_name}</p>
+							<span>¥ {$vo.goods_price}</span>
+						</li>
+                        {/volist}
+					</ul>
+				</div>
+				<!-- / 商品列表 -->
+		    </div>
+		</div>
+	</div>
+</div>
+{/block}

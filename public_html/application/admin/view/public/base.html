@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{block name="title"}数码H5商城后台管理{/block}</title>
+<link rel="stylesheet" href="__CSS__/bootstrap.min.css" />
+<link rel="stylesheet" href="__CSS__/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="__CSS__/matrix-style.css" />
+<link rel="stylesheet" href="__CSS__/matrix-media.css" />
+<link rel="stylesheet" href="__CSS__/main.css" />
+{block name="style"}{/block}
+</head>
+<body>
+{block name="header"}
+<!--Header-part-->
+<div id="header">
+    <h1>后台管理系统</h1>
+</div>
+<!--close-Header-part--> 
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li id="profile-messages" >
+            <a title="" href="{:url('index/index')}">
+                <span class="glyphicon glyphicon-user white"></span>
+                <span class="text white">欢迎您,{$Think.session.admin_user_name}</span>
+            </a>
+        </li>
+        <li class="">
+            <a title="" href="{:url('login/logout')}">
+                <span class="glyphicon glyphicon-share-alt white"></span> 
+                <span class="text white">退出</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--sidebar-menu-->
+{/block}
+{block name="left_main"}
+<strong>
+<!--sidebar-menu-->
+<div id="sidebar">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> 首页</a>
+    
+    <ul class="sidebar-extra">
+    {volist name="menu" id="vo"}
+    <li class="submenu"><a href=""><span class="glyphicon glyphicon-th"></span><span>{$vo.title}</span></a>
+    {if isset($vo.block)}
+    <ul style="display:block; ">
+    {else /}
+    <ul>
+    {/if}
+        {volist name="vo.node" id="item"}
+        <li><a href="{:url($item.name)}">{$item.title}</a></li>
+        {/volist}
+    </ul>
+    </li>   
+    {/volist}
+   </ul>
+</div>
+</strong>
+{/block}
+{block name="right_main"}{/block}
+{block name="footer"}
+<!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12">技术支持：南京微沐软件科技有限公司</div>
+</div>
+<!--end-Footer-part--> 
+<script src="__JS__/jquery.min.js"></script> 
+<script src="__JS__/bootstrap.min.js"></script> 
+<script src="__JS__/matrix.js"></script> 
+<script src="__JS__/common.js"></script> 
+{/block}
+{block name="js"}{/block}
+</body>
+</html>

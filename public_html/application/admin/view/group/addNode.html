@@ -1,0 +1,93 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="group" data-page="addNode">
+	<div id="content-header">
+  		<div id="breadcrumb"> 
+  			<a href="" title="首页" class="tip-bottom">
+  				<span class="glyphicon glyphicon-home"></span>首页
+  			</a>
+  			<a href="" class="tip-bottom">管理员管理</a> 
+  			<a href="" class="current">{$title}</a> 
+  		</div>
+  		<h1>{$title}</h1>
+	</div>
+    <div class="content">
+	<div class="content-top">
+		<a class="btn btn-primary white" href="{:url('index')}" role="button">
+			<strong>权限列表</strong>
+		</a>
+	</div>
+    </div>
+	<div class="content-left">
+		<form action="" method="post" name="nodeform" onsubmit="return checkform()" class="form-horizontal" role="form">
+			<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">节点名称：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="title" value="{if isset($info)}{$info.title}{/if}" class="form-control" />
+		      	</div>
+		      	<span id="sp1" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+			<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">节点标识：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="name" value="{if isset($info)}{$info.name}{/if}" class="form-control" />
+		      	</div>
+		      	<span id="sp2" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+			<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">分组：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="group" value="{if isset($info)}{$info.group}{/if}" class="form-control" />
+		      	</div>
+		      	<span id="sp3" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">节点类型：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+                    <select name="type">
+                        <option value="1"{if isset($info) && $info.type eq 1}selected{/if}>url</option>
+                        <option value="2"{if isset($info) && $info.type eq 2}selected{/if}>主菜单</option>
+                    </select>
+		    	</div>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">状态：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+                    <select name="status">
+                        <option value="1"{if isset($info) && $info.status eq 1}selected{/if}>启用</option>
+                        <option value="0"{if isset($info) && $info.status eq 0}selected{/if}>禁用</option>
+                    </select>
+		    	</div>
+		    </div>
+            <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">附加条件：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="condition" value="{if isset($info)}{$info.condition}{/if}" class="form-control" />
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+			    <div class="col-sm-offset-3 col-sm-9">
+                    <input type="hidden" name="id" value="{if isset($info)}{$info.id}{/if}"/>
+			        <button class="btn btn-primary" type="submit" name="submit"  id="sub">确定</button>
+			        <button class="btn btn-white" type="reset" name="reset" style="margin-left:20px;">重置</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/group.js"></script>
+{/block}

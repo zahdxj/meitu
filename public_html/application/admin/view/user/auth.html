@@ -1,0 +1,40 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content">
+	<div id="content-header">
+	  	<div id="breadcrumb"> 
+	  		<a href="#" title="首页" class="tip-bottom">
+	  			<i class="icon-home"></i> 首页
+	  		</a>
+	  		<a href="#" class="tip-bottom">管理员管理</a> 
+	  		<a href="#" class="current">{$title}</a> 
+	  	</div>
+	  	<h1>{$title}</h1>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white"  href="{:url('User/index')}" role="button">管理员列表</a>
+		</div>
+	</div>
+    <div class="content-left">
+		<form method="post" action="" name="addform"  role="form" class="form-horizontal">
+			<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">用户组：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+                    {volist name="info" id="vo"}
+                    <input type="radio" name="group_id" value="{$vo.id}" {if isset($vo.checked)}checked{/if}>{$vo.title}&nbsp;&nbsp;
+                    {/volist}
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+			    <div class="col-sm-offset-3 col-sm-9">
+                    <input type="hidden" name="user_id" id="user_id" value="{$user_id}" />
+			        <button class="btn btn-primary" type="submit" name="submit">确定</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+{/block}

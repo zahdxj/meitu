@@ -1,0 +1,78 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="goods" data-page="index">
+	<div id="content-header" class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a> 
+	  		<a href="" class="tip-bottom">商品管理</a> 
+	  		<span class="current">商品列表</span> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white"  href="{:url('add')}" role="button">添加商品</a>
+		</div>
+		<form action="{:url('index')}" method="get" role="form" class="form-inline form-bottom">
+			<div class="form-group">
+			    <label class="control-label">商品ID：</label>
+			    <input type="text" class="form-control" name="search_id" />
+		  	</div>
+		  	<div class="form-group">
+			    <label class="control-label">商品名称：</label>
+			    <input type="text" class="form-control"  name="search_name"/>
+		  	</div>
+		  	<button class="btn btn-primary" type="submit" name="search">搜索</button>
+		</form>
+		<table class="table table-bordered text-center" style="width: 823px">
+			<tr class="bg-info">
+				<td>商品ID</td>
+				<td>商品名称</td>
+				<td>商品分类</td>
+				<td>是否上架</td>
+				<td>是否首页展示</td>
+				<td>排序</td>
+				<td>操作</td>
+			</tr>
+			{volist name="goods_list" id="goods"}
+	            <tr class="bg-danger">
+					<td class="checkbox-style"  style="width: 10%">
+						<label class="checkbox">
+						  	<input type="checkbox" class="checkbox" name="goods_id[]" value="{$goods.goods_id}">
+						  	{$goods.goods_id}					
+						  </label>
+					</td>
+	            	<td>{$goods.goods_name}</td>
+	                <td>{$goods.cat_name}</td>
+	                <td>
+						{eq name="goods.is_on_sale" value="1"}是{else /}否{/eq}
+					</td>
+	                <td>
+						{eq name="goods.is_show_index" value="1"}是{else /}否{/eq}
+					</td>
+	                <td>
+						{$goods.sort}
+					</td>
+	                <td>
+	                	<a href="{:url('edit',array('goods_id'=>$goods['goods_id']))}" class="btn btn-primary btn-xs">编辑</a>
+	                	<a href="javascript:;" class="btn btn-primary btn-xs" onclick="goods_remove('{:url(\'del\')}','{$goods.goods_id}')" id="remove_{$goods.goods_id}">删除</a>
+	                </td>
+	            </tr>
+			{/volist}
+		</table>
+		<div class="btn-group">
+			<button class="btn btn-default" type="submit" id="plsc" data-url="{:url('del')}">批量删除</button>
+			<button class="btn btn-default" type="submit" id="selectAll">全选</button>
+			<button class="btn btn-default" type="submit" id="unselect">全不选</button>
+			<button class="btn btn-default" type="submit" id="reverse">反选</button>
+		</div>
+		<div class="page">
+			{$page}
+		</div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/goods.js"></script>
+{/block}

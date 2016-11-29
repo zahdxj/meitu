@@ -1,0 +1,75 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="ad" data-page="index">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">广告管理</a> 
+	  		<a href="" class="current">首页轮播图</a> 
+	  	</div>
+	</div>
+	<div class="content content_ad">
+        <form action="" method="post" name="addform" enctype="multipart/form-data" onsubmit="return checkform()" role="form" class="form-horizontal">
+			<table id="tb" class="table table-hover table-bordered text-center" style="width: 90%">
+				<tr class="bg-info">
+					<td>操作</td>
+					<td width="330">图片</td>
+					<td>图片尺寸</td>
+					<td>链接地址</td>
+					<td>描述</td>
+				</tr>
+	            {if !empty($banner_list)}
+	            {volist name="banner_list" id="banner"}
+	            <tr id="row_{$key}">
+	                <input type="hidden" name="id[]" value="{$banner.id}" />
+	                {if $key eq 0}
+					<td><div class="add_btn" onclick="add_row()"></div></td>
+	                <td>
+						<div class="goods_img_item" id="goods_img_{$key}">
+			    			<div id="imgdiv_{$key}"><img id="imgShow_{$key}" width="320" height="180" onclick="$('#up_img_{$key}').click()" src="__PUBLIC__/{$banner.img_path}" /></div><input class="img_input" type="file" id="up_img_{$key}" name="img_path[]" value="{$banner.img_path}"/>
+			    		</div>
+					</td>
+	                {else /}
+					<td><div class="del_btn" onclick="del_row('{$key}')"></div></td>
+	                <td>
+						<div class="goods_img_item" id="goods_img_{$key}">
+			    			<div id="imgdiv_{$key}"><img id="imgShow_{$key}" width="320" height="180" onclick="$('#up_img_{$key}').click()" src="__PUBLIC__/{$banner.img_path}" /></div><input class="img_input" type="file" id="up_img_{$key}" name="img_path[]" value="{$banner.img_path}"/>
+			    		</div>
+					</td>
+	                {/if}
+					<td>750*360</td>
+					<td><textarea name="img_url[]" rows="3" style="width: 100%">{$banner.img_url}</textarea></td>
+					<td><textarea name="img_desc[]" rows="3" style="width: 100%">{$banner.img_desc}</textarea></td>
+				</tr>
+	            {/volist}
+	            {else /}
+	            <tr id="row_0">
+					<td><div class="add_btn" onclick="add_row()"></div></td>
+	                <td>
+						<div class="goods_img_item" id="goods_img_0">
+			    			<div id="imgdiv_0"><img id="imgShow_0" width="320" height="180" onclick="$('#up_img_0').click()" src="__IMAGES__/plus2.jpg" /></div><input class="img_input" type="file" id="up_img_0" name="img_path[]" />
+			    		</div>
+					</td>
+					<td>640*360</td>
+					<td><input type="text" name="img_url[]"></td>
+					<td><input type="text" name="img_desc[]"></td>
+				</tr>
+	            {/if}
+			</table>
+            <div class="form-group login-margin">
+			    <div class="col-sm-offset-3 col-sm-9">
+                        <button class="btn btn-primary" type="submit" id="submit" name="submit">确定</button>
+			        <button class="btn btn-white" type="reset"  style="margin-left: 20px;">重置</button>
+			    </div>
+			</div>
+        </form>
+	</div>
+</div>
+<input type="hidden" name="count" value="{$count}">
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/uploadPreview.js"></script>
+<script charset="utf-8" src="__JS__/ad.js"></script>
+{/block}

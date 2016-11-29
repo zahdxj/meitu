@@ -1,0 +1,143 @@
+{extend name="public/base" /}
+{block name="header"}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+<meta name="format-detection" content="email=no"/>
+<title>{block name="title"}美图商城{/block}</title>
+<link href="__HOME__/css/weui.css" rel="stylesheet" type="text/css" />
+<link href="__HOME__/css/home.css" rel="stylesheet" type="text/css" />
+</head>
+<body ontouchstart>
+{/block}
+{block name="main"}
+<div class="container" data-controller="about" data-page="index" style="margin: 0; display: initial;">
+	<div class="ui_page_hd">
+		<ul>
+			<li data-panel="contactus" class="active">联系我们</li>
+			<li data-panel="buy">如何购买</li>
+			<li data-panel="aftersale">售后服务</li>
+			<li data-panel="followus">关注我们</li>
+		</ul>
+	</div>
+	<div class="ui_page_bd">
+		<!-- 联系我们 panel -->
+		<div class="weui_panel" id="contactus">
+			<div class="ui_contactus">
+        		<div class="weui_panel_hd">
+					<div class="ui_col_2">公司地址 Address</div>
+					<div class="ui_col_2"><img src="__HOME__/images/tel.png" alt=""> 400-888-7189</div>
+        		</div>
+		        <div class="weui_panel_bd">
+		            <div class="weui_media_box weui_media_appmsg">
+		                <div class="weui_media_hd">
+		                    <img class="weui_media_appmsg_thumb" src="__HOME__/images/ljlogo.png" alt="">
+		                </div>
+		                <div class="weui_media_bd">
+		                    <h4 class="weui_media_title">江苏良晋</h4>
+		                    <p class="weui_media_desc">江苏省南京紫东国际创意园A4栋6楼</p>
+		                </div>
+		            </div>
+		        </div>
+			</div>
+		</div>
+		<!-- / 联系我们 panel -->
+		<!-- 如何购买 panel -->
+		<div class="weui_panel" id="buy">
+			<div class="ui_buy">
+        		<div class="weui_panel_hd">
+					购买方式 Way to buy
+        		</div>
+		        <div class="weui_panel_bd">
+		            <div class="weui_media_box weui_media_appmsg">
+		                <div class="weui_media_hd">
+		                    <img class="weui_media_appmsg_thumb" src="__HOME__/images/ljlogo.png" alt="">
+		                </div>
+		                <div class="weui_media_bd">
+		                    <h4 class="weui_media_title"><font color="#e92076">Online</font></h4>
+		                    <p class="weui_media_desc"><font color="#e92076" size="4">微信购买</font></p>
+		                </div>
+		            </div>
+		        </div>
+                <div class="weui_panel_fd">
+                	选择满意宝贝后，点击联系微信客服，添加我们的微信客服账号，取得联系后购买。
+                </div>
+		        <div class="weui_panel_bd">
+		            <div class="weui_media_box weui_media_appmsg">
+		                <div class="weui_media_hd">
+		                    <img class="weui_media_appmsg_thumb" src="__HOME__/images/ljlogo.png" alt="">
+		                </div>
+		                <div class="weui_media_bd">
+		                    <h4 class="weui_media_title"><font color="#e92076">Online</font></h4>
+		                    <p class="weui_media_desc"><font color="#e92076" size="4">在线咨询购买</font></p>
+		                </div>
+		            </div>
+		        </div>
+                <div class="weui_panel_fd">
+                	选择满意宝贝后，点击联系微信客服，选择在线咨询购买。
+                </div>
+		        <div class="weui_panel_bd">
+		            <div class="weui_media_box weui_media_appmsg">
+		                <div class="weui_media_hd">
+		                    <img class="weui_media_appmsg_thumb" src="__HOME__/images/ljlogo.png" alt="">
+		                </div>
+		                <div class="weui_media_bd">
+		                    <h4 class="weui_media_title"><font color="#e92076">Online</font></h4>
+		                    <p class="weui_media_desc"><font color="#e92076" size="4">电话订购</font></p>
+		                </div>
+		            </div>
+		        </div>
+                <div class="weui_panel_fd">
+                	您在美粉俱乐部上看到心仪的宝贝后，可电话联系下单。<br />
+                	订购热线：025-58771566转802  <br />
+                	客服热线：400-888-7189
+                </div>
+			</div>
+		</div>
+		<!-- / 如何购买 panel -->
+		<!-- 售后服务 panel -->
+		<div class="weui_panel" id="aftersale">
+			{include file="public/aftersale" /}
+		</div>
+		<!-- / 售后服务 panel -->
+		<!-- 关注我们 panel -->
+		<div class="weui_panel" id="followus">
+			<div class="ui_followus">
+				<p>长按识别二维码关注我们</p>
+				<ul>
+					<li>
+						<img src="__HOME__/images/qrcode_for_mt.jpg" alt="">
+						<p>欢迎关注<font color="#e92076">美粉俱乐部</font>，服务号：<font color="#e92076">meituclub</font>,有任何问题请留言！</p>
+					</li>
+					<li>
+						<img src="__HOME__/images/qrcode_for_smsc.jpg" alt="">
+						<p>欢迎关注<font color="#e92076">良晋数码商城</font>，服务号：<font color="#e92076">liangjin3C</font>,有任何问题请留言！</p>
+					</li>
+					<li>
+						<img src="__HOME__/images/qrcode_for_ljzx.jpg" alt="">
+						<p>欢迎关注<font color="#e92076">良晋在线</font>，服务号：<font color="#e92076">LJSJ01</font>,有任何问题请留言！</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- / 关注我们 panel -->
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(function(){
+	$('#buy').add('#aftersale').add('#followus').hide();
+	$('.ui_page_hd').on('click', 'li', function () {
+		$('.ui_page_hd').find('li').removeClass('active');
+		$(this).addClass('active');
+		var panel = $(this).attr('data-panel');
+		$('.weui_panel').hide();
+		$('#' + panel).show();
+	})
+})
+</script>
+{/block}

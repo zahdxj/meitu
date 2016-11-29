@@ -1,0 +1,20 @@
+<!-- 客服部分 -->
+<div class="ui_cell" align="center">
+	<p>热线电话：<font color="#e92076">400-888-7189</font>（点击拨打）</p>
+</div>
+<!-- 客服二维码列表 -->
+<div class="ui_cell ui_qrcodes">
+    {volist name="contact_list" id="vo"}
+	<div class="ui_col_3">
+		<div class="ui_qrcodes_e">
+			<img src="__PUBLIC__/{$vo.weixin_img}" alt="">
+			<p>{$vo.contact_name}</p>
+		</div>
+	</div>
+    {/volist}
+</div>
+<!-- 广告 -->
+<div class="ui_cell ginfo_ad">
+	<a href="{$ad2.ad_link}" title=""><img src="__PUBLIC__/{$ad2.ad_img}" alt=""></a>
+</div>
+<!-- / 客服部分 -->

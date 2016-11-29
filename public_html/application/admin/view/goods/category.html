@@ -1,0 +1,43 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="goods" data-page="category">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">商品管理</a> 
+	  		<a href="" class="current">商品分类</a> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('addCat')}" role="button">
+				<strong>添加商品分类</strong>
+			</a>
+		</div>
+		<table class="table table-hover table-bordered text-center" style="width: 823px">
+			<tr class="bg-info">
+				<td>分类名称</td>
+				<td>分类描述</td>
+				<td>是否显示</td>
+				<td>操作</td>
+			</tr>
+			{volist name="list" id="vo"}
+            <tr class="bg-danger">
+                <td align="left">{$vo.level|returnspace}{$vo.cat_name}</td>
+                <td>{$vo.cat_desc}</td>
+                <td>{if $vo.is_show eq 1}<img src="__IMAGES__/yes.gif"/>{else /}<img src="__IMAGES__/no.gif"/>{/if}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs"  href="{:url('editCat',array('cat_id'=>$vo.cat_id))}">编辑</a>
+                    <a class="btn btn-primary btn-xs" href="javascript:;" onclick="deleteElement('{:url(\'delCat\')}','{$vo.cat_id}','cat_id')">删除</a>
+                </td>
+            </tr>
+			{/volist}
+		</table>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/goods.js"></script>
+{/block}

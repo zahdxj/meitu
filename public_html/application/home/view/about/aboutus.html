@@ -1,0 +1,27 @@
+{extend name="public/base" /}
+{block name="header"}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no">
+<meta name="format-detection" content="email=no"/>
+<title>{block name="title"}关于我们{/block}</title>
+<link href="__HOME__/css/weui.css" rel="stylesheet" type="text/css" />
+<link href="__HOME__/css/home.css" rel="stylesheet" type="text/css" />
+</head>
+<body ontouchstart>
+{/block}
+{block name="main"}
+<div class="container" data-controller="about" data-page="aboutus" style="margin: 0; display: initial;">
+	<div class="ui_about">
+		<img src="__HOME__/images/about_01.jpg" alt="">
+		<img src="__HOME__/images/about_02.jpg" alt="">
+		<img src="__HOME__/images/about_03.jpg" alt="">
+		<img src="__HOME__/images/about_04.jpg" alt="">
+		<img src="__HOME__/images/about_05.jpg" alt="">
+		<img src="__HOME__/images/about_06.jpg" alt="">
+	</div>
+</div>
+{/block}

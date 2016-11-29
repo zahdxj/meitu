@@ -1,0 +1,38 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="contact" data-page="contactList">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">客服管理</a> 
+	  		<a href="" class="current">客服列表</a> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('addContact')}" role="button">添加客服</a>
+		</div>
+		<div class="contact-list">
+			{volist name="list" id="vo"}
+			<div class="col-sm-3 col-md-2">
+				<div class="thumbnail">
+					<img src="__PUBLIC__/{$vo.weixin_img}" alt="...">
+					<div class="caption">
+						<p>{$vo.contact_name}</p>
+					</div>
+					<div class="ele-mask" style="display: none;">
+						<a href="{:url('editContact',array('contact_id'=>$vo.contact_id))}"><span class="glyphicon glyphicon-pencil"></span></a> 
+						<a href="javascript:;" onclick="deleteElement('{:url(\'delContact\')}','{$vo.contact_id}','contact_id')"><span class="glyphicon glyphicon-remove"></span></a>
+					</div>
+				</div>
+			</div>
+			{/volist}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/contact.js"></script>
+{/block}

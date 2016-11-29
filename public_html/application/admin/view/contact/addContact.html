@@ -1,0 +1,85 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="contact" data-page="addContact">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">客服管理</a> 
+	  		<a href="" class="current">{$title}</a> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('contactList')}" role="button">客服列表</a>
+		</div>
+	</div>
+	<div class="content-left">
+        <form method="post" action="" name="contactform" enctype="multipart/form-data" class="form-horizontal" role="form" onsubmit="return checkForm();">
+		<div class="form-group login-margin">
+			<div class="col-sm-3">
+	    		<label class="control-label">客服名称：</label>
+	    	</div>
+	    	<div class="col-sm-9">
+	      		<input type="text" name="contact_name" value="{if isset($info)}{$info.contact_name}{/if}" class="form-control" />
+	      	</div>
+	      	<span id="sp1" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+	    </div>
+	    <div class="form-group login-margin">
+			<div class="col-sm-3">
+	    		<label class="control-label">客服微信号：</label>
+	    	</div>
+	    	<div class="col-sm-9">
+	      		<input type="text" name="weixin" value="{if isset($info)}{$info.weixin}{/if}" class="form-control" />
+	      	</div>
+            <span id="sp2" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+	    </div>
+	    <div class="form-group login-margin">
+			<div class="col-sm-3">
+	    		<label class="control-label">客服微信二维码：</label>
+	    	</div>
+	    	<div class="col-sm-9">
+                <input type="file" name="weixin_img" />
+	      	</div>
+	    </div>
+        {if !empty($info.weixin_img)}
+         <div class="form-group login-margin">
+            <div class="col-sm-3">
+                <label class="control-label"></label>
+            </div>
+            <div class="col-sm-9">
+                <img src="__PUBLIC__/{$info.weixin_img}"/>
+            </div>
+        </div>
+        {/if}
+		<div class="form-group login-margin">
+			<div class="col-sm-3">
+	    		<label class="control-label">客服描述：</label>
+	    	</div>
+	    	<div class="col-sm-9">
+                <textarea name="weixin_desc" style="resize:none;" rows="5" cols="57">{if isset($info)}{$info.weixin_desc}{/if}</textarea>
+	      	</div>
+	    </div>
+		<div class="form-group login-margin">
+			<div class="col-sm-3">
+	    		<label class="control-label">是否显示：</label>
+	    	</div>
+	    	<div class="col-sm-9">
+                <input type="radio" name="is_show" value="1" {if (isset($info) && $info.is_show eq 1) or !isset($info)}checked{/if}>是&nbsp;&nbsp;
+                <input type="radio" name="is_show" value="0" {if isset($info) && $info.is_show eq 0}checked{/if}>否
+	      	</div>
+	    </div>
+	    <div class="form-group login-margin">
+		    <div class="col-sm-offset-3 col-sm-9">
+		        <button class="btn btn-primary" type="submit"  name="dosubmit">确定</button>
+		        <button class="btn btn-white" type="reset"  style="margin-left: 20px;">重置</button>
+		    </div>
+		</div>
+		</form>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/contact.js"></script>
+{/block}

@@ -1,0 +1,50 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="ad" data-page="adList">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">广告管理</a> 
+	  		<a href="" class="current">广告列表</a> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('addAd')}" role="button">添加广告</a>
+		</div>
+		<table class="table table-hover table-bordered text-center" style="width: 823px">
+			<tr class="bg-info">
+				<td>广告名称</td>
+				<td>广告位置</td>
+				<td>广告链接</td>
+				<td>描述</td>
+				<td>是否显示</td>
+				<td>操作</td>
+			</tr>
+			{volist name="list" id="vo"}
+				<tr class="bg-danger">
+					<td>{$vo.ad_name}</td>
+					<td>{$vo.position_name}</td>
+					<td>{$vo.ad_link}</td>
+					<td>{$vo.ad_desc}</td>
+					<td>{eq name="vo.is_show" value="1"}是{else /}否{/eq}</td>
+					<td>
+                        <a class="btn btn-primary btn-xs" href="{:url('editAd',array('ad_id'=>$vo.ad_id))}">编辑</a>
+                        {if condition="$Think.session.admin_id eq 1"}
+						<a class="btn btn-primary btn-xs" onclick="deleteElement('{:url(\'delAd\')}','{$vo.ad_id}','ad_id')" href="javascript:;">删除</a>
+						{/if}
+					</td>
+				</tr>
+			{/volist}
+		</table>
+		<div class="page">
+			{$page}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/ad.js"></script>
+{/block}

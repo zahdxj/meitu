@@ -1,0 +1,101 @@
+{extend name="public/base" /}
+{block name="main"}
+<div class="container" data-controller="goods" data-page="goods_info">
+	<!-- 商品轮播 -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper goods-swiper">
+            {volist name="goods_gallery" id="vo"}
+            <div class="swiper-slide"><img src="__PUBLIC__/{$vo.img_url}" /></div>
+            {/volist}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="ui_cell">
+        <div class="ui_tips">宝贝为拍摄，实物更漂亮</div>
+        <div class="ui_title">
+        	<p>{$goods_info.goods_name}</p>
+        	<p>价格：<font color="#e92076">{$goods_info.goods_price}元</font></p>
+        </div>
+    </div>
+    <div class="ui_cell">
+    	<div class="weui_cell ui_service">
+            <div class="weui_cell_hd">
+            	<img src="__PUBLIC__/{$contact.weixin_img}" alt="">
+            </div>
+            <div class="weui_cell_bd weui_cell_primary">
+            	<p>【<font color="#e92076">推荐客服</font>】{$contact.contact_name}</p>
+            	<p>微信号：{$contact.weixin}（长按复制）</p>
+            	<div>{$contact.weixin_desc}</div>
+            </div>
+        </div>
+    </div>
+    <div class="ui_cell ginfo_ad">
+        <a href="{$ad1.ad_link}" title=""><img src="__PUBLIC__/{$ad1.ad_img}" alt=""></a>
+    </div>
+    <div class="ui_cell">
+    	<div class="ui_tab">
+    		<div class="ui_tab_hd on">宝贝详情</div>
+    		<div class="ui_tab_hd">微信客服</div>
+    	</div>
+    	<!-- 宝贝详情 -->
+    	<div class="ui_tab_bd p10">
+    		<div class="ui_tab_ginfo">
+                <article class="weui_article">
+                    <section>{$goods_info.goods_info}</section>
+                </article>
+    		</div>
+
+	        <div class="weui_btn_area ui_btn">
+		        <a class="weui_btn weui_btn_primary btn_unfold" href="javascript:" id="btn_unfold">查看详细</a>
+		    </div>
+    	</div>
+    	<!-- 微信客服 -->
+    	<div class="ui_cell ui_tab_bd hide">
+            {include file="public/contact" /}
+    	</div>
+    	<div class="ui_cell ui_offer">
+    		<div class="ui_row">
+	    		<div class="ui_col_4">
+                    <a href="{:url('About/index')}" title="">
+                        <img src="__HOME__/images/label1.png" alt="">
+                        <p>联系我们</p>
+                    </a>
+	    		</div>
+	    		<div class="ui_col_4">
+                    <a href="{:url('About/index')}" title="">
+                        <img src="__HOME__/images/label2.png" alt="">
+                        <p>如何购买</p>
+                    </a>
+	    		</div>
+	    		<div class="ui_col_4">
+                    <a href="{:url('About/index')}" title="">
+                        <img src="__HOME__/images/label3.png" alt="">
+                        <p>售后服务</p>
+                    </a>
+	    		</div>
+	    		<div class="ui_col_4">
+                    <a href="{:url('About/index')}" title="">
+                        <img src="__HOME__/images/label4.png" alt="">
+                        <p>关注我们</p>
+                    </a>
+	    		</div>
+    		</div>
+    		<div class="ui_row mt10">
+    			<p>良晋数码    版权所有</p>
+    			<p>致力于打造一家值得信赖的能承担社会责任的公司！</p>
+    		</div>
+    	</div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script >
+    var urls="{{:url('Goods/addCollect')}}";
+    var login_url="{:url('Goods/login')}";
+    function submitForm(){
+        if(jQuery.trim($("#search_input").val())!=''){
+            searchForm.submit();
+        }
+    }
+</script>
+{/block}

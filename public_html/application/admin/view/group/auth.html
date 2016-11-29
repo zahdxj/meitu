@@ -1,0 +1,53 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="group" data-page="auth">
+	<div id="content-header">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">用户组管理</a> 
+	  		<a href="" class="current">用户组授权</a> 
+	  	</div>
+	    <h1>用户组授权</h1>
+	</div>
+ 	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('index')}" role="button">
+				<strong>用户组列表</strong>
+			</a>
+		</div>
+		<form id="myform" name="myform" action="" method="post" class="form-horizontal" role="form">
+			<input type="hidden" name="id" value="{$id}">
+			<table class="table table-bordered" style="width:1072px">
+				<tbody>
+					{volist name="list" id="node"}
+						<tr class="bg-danger bg-danger-style">
+							<td  class="bg-info-style"  style="width: 15%">
+								<label class="checkbox" for="gsmanage">{$key}</label>
+							</td>
+							<td>
+								{volist name="node" id="item"}
+								<div class="col-xs-3 checkbox">
+	                                <input type='checkbox'  class="checkbox" id="{$item.name}" value="{$item.id}" name="rule[]"  {if in_array($item.id,$auth_list)}checked{/if} />
+	                                <label for="{$item.name}">{$item.title}</label>
+								</div>
+								{/volist}
+							</td>
+						</tr>
+					{/volist}
+					<tr class="bg-danger">
+					    <td class="text-center" colspan="2">
+					    	<button class="btn btn-primary" type="submit" name="submit">保存</button>
+				        	<button class="btn btn-white" type="reset" name="reset" style="margin-left: 20px;">重置</button>
+					    </td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/group.js"></script>
+{/block}

@@ -1,0 +1,157 @@
+{extend name="public/base" /}
+{block name="style"}
+<link rel="stylesheet" href="__STATIC__/kindeditor/plugins/code/prettify.css" />
+{/block}
+{block name="right_main"}
+<div id="content" data-controller="goods" data-page="add">
+	<div id="content-header" class="content-extra">
+		<div id="breadcrumb"> 
+			<a href="" title="首页" class="tip-bottom">
+				<span class="glyphicon glyphicon-home"></span>首页
+			</a> 
+			<a href="" class="tip-bottom">商品管理</a> 
+			<span class="current">{$title}</span> 
+		</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white"  href="{:url('index')}" role="button">商品列表</a>
+		</div>
+	</div>
+	<div class="content-left">		
+    	<form action="" method="post" name="addform" enctype="multipart/form-data" onsubmit="return checkform()" role="form" class="form-horizontal">
+    		<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品名称：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="goods_name" class="form-control" value="{if isset($goods_info)}{$goods_info.goods_name}{/if}"/>
+		      	</div>
+		      	<span id="sp1" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品分类：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<select name="cat_id" class="form-control">
+						<option value="">请选择分类...</option>
+						{volist name="cat_list" id="vo"}
+						<option value="{$vo.cat_id}" {if isset($goods_info) && $vo.cat_id eq $goods_info.cat_id }selected{/if} >{$vo.level|returnspace}{$vo.cat_name}</option>
+						{/volist}
+					</select>
+		      	</div>
+		      	<span id="sp2" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品图片：</label>
+		    	</div>
+		    	<div class="col-sm-9" id="goods_img_box">
+                    {if isset($goods_info.goods_img)}
+                        {volist name="goods_info.goods_img" id="img"}
+                        <div class="col-sm-6 goods_img_item" id="goods_img_{$key}">
+                            <div id="imgdiv_{$key}"><img id="imgShow_{$key}" width="150" height="150" onclick="$('#up_img_{$key}').click()" src="__PUBLIC__/{$img.img_url}"><div class="delete_btn" onclick="delete_img('{$key}')"></div></div><input class="img_input" type="file" id="up_img_{$key}" name="goods_img[]">
+                        </div>
+                        {/volist}
+                        <div class="col-sm-6 goods_img_item" id="goods_img_{$img_count}">
+                            <div id="imgdiv_{$img_count}"><img id="imgShow_{$img_count}" width="150" height="150" onclick="$('#up_img_{$img_count}').click()" src="__IMAGES__/plus.jpg" /></div><input class="img_input" type="file" id="up_img_{$img_count}" name="goods_img[]" />
+                        </div>
+                    {else /}
+                        <div class="col-sm-6 goods_img_item" id="goods_img_0">
+                            <div id="imgdiv_0"><img id="imgShow_0" width="150" height="150" onclick="$('#up_img_0').click()" src="__IMAGES__/plus.jpg" /></div><input class="img_input" type="file" id="up_img_0" name="goods_img[]" />
+                        </div>
+                    {/if}
+                    <input type="hidden" name="img_count" value="{$img_count}">
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品描述：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<textarea style="resize:none;" rows="3" cols="20" name="goods_desc" class="form-control">{if isset($goods_info)}{$goods_info.goods_desc}{/if}</textarea>
+		      	</div>
+		      	<span id="sp3" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品详情：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<textarea id="notice" name="goods_info" style="width:700px;height:300px;">{if isset($goods_info)}{$goods_info.goods_info}{/if}</textarea>
+		      	</div>
+		      	<span id="sp4" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品库存：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text"  name="goods_number" value="{if isset($goods_info)}{$goods_info.goods_number}{/if}" class="form-control" />
+		      	</div>
+		      	<span id="sp3" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品价格：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text"  name="goods_price" value="{if isset($goods_info)}{$goods_info.goods_price}{/if}" class="form-control" />
+		      	</div>
+		      	<span id="sp4" style="color:red;" class="col-sm-offset-3 col-sm-9"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">商品排序：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text"  value="{if isset($goods_info)}{$goods_info.sort}{/if}" name="sort" class="form-control" />
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">是否上架：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<label class="radio-inline">
+					  	<input type="radio" name="is_on_sale" value="1" {if (isset($goods_info) && $goods_info.is_on_sale eq 1) or !isset($goods_info)}checked{/if}/>是
+					</label>
+					<label class="radio-inline">
+					  	<input type="radio" name="is_on_sale" value="0" {if isset($goods_info) && $goods_info.is_on_sale eq 0}checked{/if}/>否
+					</label>
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">是否首页展示：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<label class="radio-inline">
+					  	<input type="radio" name="is_show_index" value="1" {if (isset($goods_info) && $goods_info.is_show_index eq 1) or !isset($goods_info)}checked{/if}/>是
+					</label>
+					<label class="radio-inline">
+					  	<input type="radio" name="is_show_index" value="0" {if isset($goods_info) && $goods_info.is_show_index eq 0}checked{/if}/>否
+					</label>
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+			    <div class="col-sm-offset-3 col-sm-9">
+                    {if isset($goods_info)}
+                        <button class="btn btn-primary" type="submit" id="submit" name="submit">确定</button>
+                    {else /}
+                        <button class="btn btn-primary" type="submit" id="submit" name="submit">添加</button>
+                    {/if}
+			        <button class="btn btn-white" type="reset"  style="margin-left: 20px;">重置</button>
+			    </div>
+			</div>
+        </form>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__STATIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__STATIC__/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__JS__/uploadPreview.js"></script>
+<script charset="utf-8" src="__JS__/goods.js"></script>
+{/block}

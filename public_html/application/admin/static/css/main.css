@@ -1,0 +1,62 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2016-11-08 15:20:30
+ * @version $Id$
+ */
+body{font-family: "微软雅黑";overflow:hidden;}
+.navbar {min-height: auto}
+img{cursor: pointer;}
+#user-nav .nav>li>a:focus, #user-nav .nav>li>a:hover{background: transparent;color: #fff}
+#header h1{background: none;font-size: 16px;color: red;font-weight: bold;line-height:30px;margin: 0;}
+.btn{border-radius: 4px;}
+#content input{border-radius: 4px;}
+.body-bg{background: #d7bbd5 url(../images/login-bg.png) no-repeat 0 0;}
+.login-frm{width: 260px; height: 260px; text-align: center; position: absolute; top: 50%; left: 50%; margin-left: -130px; margin-top: -130px;}
+.login-frm h2{margin-bottom: 60px; color: #e92076;}
+.login-frm .form-group{margin-bottom: 30px;}
+.login-frm .btn{min-width: 100px; margin: 0 10px;}
+.login-margin{margin-top:10px;}
+.code img{height: 30px;}
+.content .table-bordered>tbody>tr>td{border:1px solid #000;}
+#content .content table {color: #333;}
+.content{margin-left: 20px;}
+.table-top{margin-top:20px;}
+.font-color{color:#F00;font-weight:bold;}		
+.content-top{margin: 10px auto;}
+.content-left{margin-left: 200px;width: 500px;}
+.form-horizontal .control-label{padding-top: 7px;}
+.bg-info-style{height: 45px;}
+.bg-info-style label{margin-left: 40%}
+.bg-top-style label{margin-left: 48%}
+.form-horizontal .bg-danger-style input{margin-top: -4px;}
+.form-bottom{margin-bottom: 20px;}
+.page{margin:30px 0 0 700px;}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{vertical-align: middle;}
+.checkbox-style label{margin: 0 0 0 30%;}
+.checkbox-style input[type=checkbox]{margin-top: 2px;margin-left: -2px;}
+.star{color: red;position: absolute;left: 100%;top: 40%;margin-left: -7px;}
+#sidebar > ul > li > a > .glyphicon{margin-right: 10px;}
+#user-nav > ul > li > a > .glyphicon, #sidebar li a .glyphicon{opacity: .5;margin-top: 2px;}
+#breadcrumb a .glyphicon {margin-right: 5px;opacity: .6;}
+.white{color: #fff}
+.top-margin{margin-top:30px;}
+#content{min-height: auto;overflow-x: auto;margin-top: -38px;}
+#content .content-extra{margin-top: 0;overflow:hidden;}
+.sidebar-extra{overflow-x: auto;}
+.img_input{position: absolute;top:-2000px}
+.goods_img_item{margin: 10px 0}
+.delete_btn{width: 20px;height: 20px;position: absolute;top:-10px;right: 7px;background-image: url('../images/delete.png');cursor: pointer;}
+.content_ad{ margin-top:20px;  }
+.add_btn{width: 20px;height: 20px;background-image: url('../images/add_btn.png');cursor: pointer;margin: 0 auto;}
+.del_btn{width: 20px;height: 20px;background-image: url('../images/del_btn.png');cursor: pointer;margin: 0 auto;}
+
+/*contact*/
+.contact-list .thumbnail{text-align: center;}
+.contact-list .thumbnail .caption{padding: 0;}
+.ele-mask{position: absolute; z-index: 1; width: 85%; height: 90%; top: 0; left: 15px; background: rgba(0, 0, 0, 0.8); -webkit-transition: background .3s; transition: background .3s;}
+.ele-mask a{display: inline-block; position: relative; width: 50%; height: 100%; color: #fff; float: left; font-size: 20px;}
+.ele-mask a span{position: absolute; top: 50%; left: 50%; margin-top: -10px; margin-left: -10px;}
+.ele-mask a:hover{color: #337ab7;}
+.hide{display: none;}

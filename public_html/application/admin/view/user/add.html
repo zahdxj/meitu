@@ -1,0 +1,133 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content">
+	<div id="content-header"  class="content-extra">
+  		<div id="breadcrumb"> 
+  			<a href="" title="首页" class="tip-bottom">
+  				<span class="glyphicon glyphicon-home"></span>首页
+  			</a>
+  			<a href="" class="tip-bottom">管理员管理</a> 
+  			<a href="" class="current">编辑管理员</a> 
+  		</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white"  href="{:url('User/index')}" role="button">管理员列表</a>
+		</div>
+	</div>
+	<div class="content-left">
+		<form method="post" action="" name="addform" onsubmit="return checkform()" role="form" class="form-horizontal">
+			<div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">用户名：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="text" name="user_name" value="{if isset($info)}{$info.user_name}{/if}" id="user_name" class="form-control" onblur="chkusername(this)"/>
+		      	</div>
+		      	<span id="sp1" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">新密码：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="password" name="password" id="password" class="form-control" onblur="chkpwd(this)"/>
+		      	</div>
+		      	<span id="sp2" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+		    <div class="form-group login-margin">
+		    	<div class="col-sm-9 col-sm-offset-3">
+		    		<p class="help-block" style="font-size:13px">如留空,密码保持不变</p>
+		      	</div>
+		    </div>
+		    <div class="form-group login-margin">
+				<div class="col-sm-3">
+		    		<label class="control-label">确认密码：</label>
+		    	</div>
+		    	<div class="col-sm-9">
+		      		<input type="password" name="repassword" id="repassword" class="form-control" onblur="repwd(this)"/>
+		      	</div>
+		      	<span id="sp3" style="color:red;" class="col-sm-9 col-sm-offset-3"></span>
+		    </div>
+		    <div class="form-group login-margin">
+			    <div class="col-sm-offset-3 col-sm-9">
+                    <input type="hidden" name="user_id" id="user_id" value="{if isset($info)}{$info.user_id}{/if}" />
+			        <button class="btn btn-primary" type="submit" name="submit">确定</button>
+			        <button class="btn btn-white" type="reset" name="reset" style="margin-left: 20px;">重置</button>
+			    </div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+    function checkform(){
+        var user_id=$("#user_id").val();
+		if(addform.user_name.value==""){
+			$("#sp1").html("用户名不能为空");
+			return false;
+		}
+        if(user_id){
+            if(addform.password.value!=''){
+                var preg=/^[\w]{5,20}$/;
+                if(!preg.test(addform.password.value)){
+                    $("#sp2").html("密码请使用字母数字或者下划线且长度不能少于5位");
+                    return false;
+                }else{
+                    $("#sp2").html("");
+                }
+            }
+            if(addform.repassword.value!=addform.password.value){
+                $("#sp3").html('确认密码和密码不一致');
+                return fasle;
+            }
+            
+        }else{
+            if(addform.password.value==""){
+                $("#sp2").html("密码不能为空");
+                return false;
+            }else{
+                var preg=/^[\w]{5,20}$/;
+                if(!preg.test(addform.password.value)){
+                    $("#sp2").html("密码请使用字母数字或者下划线且长度不能少于5位");
+                    return false;
+                }else{
+                    $("#sp2").html("");
+                }
+            }
+            if(addform.repassword.value!=addform.password.value){
+                $("#sp3").html('确认密码和密码不一致');
+                return fasle;
+            }
+        }
+		
+		return true;
+	}
+	function chkusername(obj){
+        var url="{:url('User/chkusername')}";
+        $.post(url,{username:obj.value},function(data){
+            if(data.data){
+                $("#sp1").html(data.info);
+            }else{
+                $("#sp1").html("");
+            }
+        },'json');
+			
+	}
+	function chkpwd(obj){
+		var preg=/^[\w]{5,}$/;
+		if(!preg.test(obj.value)){
+			$("#sp2").html("密码请使用字母数字或者下划线且长度不能少于5位");
+		}else{
+			$("#sp2").html("");
+		}
+	}
+    function repwd(obj){
+        var pwd= $("#password").val();
+        if(obj.value!=pwd){
+            $("#sp3").html('确认密码和密码不一致');
+        }else{
+            $("#sp3").html("");
+        }
+    }
+</script>
+{/block}

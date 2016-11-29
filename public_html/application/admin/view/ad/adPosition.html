@@ -1,0 +1,46 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="ad" data-page="adPosition">
+	<div id="content-header"  class="content-extra">
+	  	<div id="breadcrumb"> 
+	  		<a href="" title="首页" class="tip-bottom">
+	  			<span class="glyphicon glyphicon-home"></span>首页
+	  		</a>
+	  		<a href="" class="tip-bottom">广告管理</a> 
+	  		<a href="" class="current">广告位</a> 
+	  	</div>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('addAdPosition')}" role="button">添加广告位</a>
+		</div>
+		<table class="table table-hover table-bordered text-center" style="width: 823px">
+			<tr class="bg-info">
+				<td>广告位置</td>
+				<td>宽度</td>
+				<td>高度</td>
+				<td>描述</td>
+				<td>操作</td>
+			</tr>
+			{volist name="list" id="vo"}
+				<tr class="bg-danger">
+					<td>{$vo.position_name}</td>
+					<td>{$vo.ad_width}</td>
+					<td>{$vo.ad_height}</td>
+					<td>{$vo.position_desc}</td>
+					<td>
+                        <a class="btn btn-primary btn-xs" href="{:url('editAdPosition',array('position_id'=>$vo.position_id))}">编辑</a>&nbsp;&nbsp;
+						<a class="btn btn-primary btn-xs" onclick="deleteElement('{:url(\'delAdPosition\')}','{$vo.position_id}','position_id')" href="javascript:;">删除</a>
+					</td>
+				</tr>
+			{/volist}
+		</table>
+		<div class="page">
+			{$page}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/ad.js"></script>
+{/block}

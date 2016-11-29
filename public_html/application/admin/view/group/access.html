@@ -1,0 +1,51 @@
+{extend name="public/base" /}
+{block name="right_main"}
+<div id="content" data-controller="group" data-page="access">
+	<div id="content-header">
+  		<div id="breadcrumb"> 
+  			<a href="" title="首页" class="tip-bottom">
+  				<span class="glyphicon glyphicon-home"></span>首页
+  			</a>
+  			<a href="" class="tip-bottom">管理员管理</a> 
+  			<a href="" class="current">权限列表</a> 
+  		</div>
+  		<h1>权限节点</h1>
+	</div>
+	<div class="content">
+		<div class="content-top">
+			<a class="btn btn-primary white" href="{:url('addNode')}" role="button">
+				<strong><span class="glyphicon glyphicon-plus"></span>添加节点</strong>
+			</a>
+		</div>
+		<table class="table table-hover table-bordered text-center" style="width: 823px">
+			<tr class="bg-info">
+				<td>ID</td>
+				<td>名称</td>
+				<td>标识</td>
+				<td>分组</td>
+				<td>状态</td>
+				<td>操作</td>
+			</tr>
+			{volist name="list" id="vo"}
+				<tr class="bg-danger">
+					<td>{$vo.id}</td>
+					<td>{$vo.title}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.group}</td>
+                    <td>{if $vo.status eq 1}启用{else /}禁用{/if}</td>
+					<td>
+                        <a class="btn btn-primary btn-xs"  href="{:url('Group/editNode',array('id'=>$vo.id))}">编辑</a>
+						<a class="btn btn-primary btn-xs" href="javascript:;" onclick="deleteElement('{:url('Group/delNode')}','{$vo.id}','id')">删除</a>
+					</td>
+				</tr>
+			{/volist}
+		</table>
+        <div class="page">
+			{$page}
+		</div>
+	</div>
+</div>
+{/block}
+{block name="js"}
+<script charset="utf-8" src="__JS__/group.js"></script>
+{/block}

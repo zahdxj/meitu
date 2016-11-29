@@ -1,0 +1,23 @@
+{extend name="public/base" /}
+{block name="main"}
+<div class="container" data-controller="goods" data-page="goods_list">
+	<!-- 广告位 750 * 340 -->
+	<div class="ui_cell focus_ads">
+		<a href="{$ad.ad_link}" title=""><img src="__PUBLIC__/{$ad.ad_img}" alt=""></a>
+	</div>
+	<!-- 商品列表 -->
+	<div class="ui_list">
+		<ul>
+            {volist name="goods_list" id="vo"}
+			<li>
+				<a href="{:url('goods/goods_info',array('goods_id'=>$vo.goods_id))}" title=""><img src="__PUBLIC__/{$vo.goods_thumb}" alt=""></a>
+				<p>{$vo.goods_name}</p>
+				<span>¥ {$vo.goods_price}</span>
+			</li>
+            {/volist}
+		</ul>
+	</div>
+    {$page}
+	<!-- / 商品列表 -->
+</div>
+{/block}
